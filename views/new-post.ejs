@@ -1,0 +1,35 @@
+<%- include('partials/header'); %>
+
+<div class="container pt-5">
+  <div class="bg-light p-5">
+    <h1 class="text-center">New Post</h1>
+    <div class="pt-5">
+      <form class="row g-3" action="/blogs/new" method="POST">
+        <!-- Other form fields -->
+        <div class="col-md-6">
+          <label for="title" class="form-label">Post Title</label>
+          <input type="text" name="title" class="form-control" id="title" required>
+        </div>
+        <div class="col-md-6">
+          <label for="tag" class="form-label">Post Tag</label>
+          <input type="text" name="tag" class="form-control" id="tag" required>
+        </div>
+        <div class="col-12">
+          <label for="image-url" class="form-label">Image URL</label>
+          <input type="text" name="image" class="form-control" id="image-url" required>
+        </div>
+
+        <div class="col-12">
+          <label for="description" class="form-label">Post Description</label>
+          <textarea name="description" class="form-control" id="description" rows="5" required></textarea>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary w-100 bg-dark">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer'); %>

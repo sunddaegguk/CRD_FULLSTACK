@@ -1,0 +1,84 @@
+<%- include('./partials/header') %>
+
+<div class="container pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <% if (post) { %>
+                    <img src="<%= post.image %>" alt="" class="img-fluid" width="100%">
+                    <h1 class="display-4"><%= post.title %></h1>
+                <% } else { %>
+                    <p>Post not found</p>
+                <% } %>
+            </div>
+        </div>
+        <p class="p-2">
+            Author: <span style="letter-spacing: 6px;"><%= post.user ? post.user.username : 'Anonymous' %></span>
+            <span>Created: <%= post.createdAt.toDateString() %></span>
+            <span>Updated: <%= post.updatedAt.toDateString() %></span>
+        </p>
+        <div class="row">
+            <div class="col-12">
+                <% if (post) { %>
+                    <!-- Display tags in a paragraph -->
+                    <p><strong>Tags:</strong> <%= post.tag %></p>
+
+                    <!-- Edit post button -->
+                    <a href="/posts/<%= post._id %>/edit" class="btn btn-info">Edit Post</a>
+
+                    <!-- Delete post button -->
+                    <form method="POST" action="/blogs/<%= post._id %>?_method=delete" class="d-inline">
+                        <button class="btn btn-danger">Delete Post</button>
+                    </form>
+                <% } else { %>
+                    <p>Post not found</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- comments SECTION-->
+<!-- comments SECTION-->
+<div class="container pt-5">
+    <div class="container">
+        <form action="/blogs/<%= post._id %>/comments" method="POST">
+            <!-- Comment Input -->
+            <div class="form-group pt-2">
+                <label for="comment">Leave a comment:</label>
+                <textarea id="comment" class="form-control rounded-0" rows="4" name="comment"></textarea>
+            </div>
+            <!-- Add Comment Button -->
+            <div class="form-group pt-2">
+                <button type="submit" class="btn btn-primary w-100 rounded-0">Add Comment</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Display Comments Section -->
+<!-- Display Comments Section -->
+<div class="container pt-5">
+    <div class="container">
+        <div class="row">
+            <% if (post.comments && post.comments.length > 0) { %>
+                <% post.comments.forEach((comment) => { %>
+                    <div class="col-12">
+                        <h5 class="card-title"><strong><%= comment.author %></strong></h5>
+                        <p class="card-text"><%= comment.comment %></p>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No comments yet.</p>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<%- include('partials/footer'); %>

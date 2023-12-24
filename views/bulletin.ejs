@@ -1,0 +1,66 @@
+<%- include('partials/header'); %>
+<!-- views/bulletin-board.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin Board</title>
+    <!-- Add your stylesheets or styles here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .post-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .post-content {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bulletin Board</h1>
+
+    <% if (posts.length > 0) { %>
+        <% posts.forEach((post) => { %>
+            <div class="post">
+                <div class="post-title"><%= post.title %></div>
+                <div class="post-content"><%= post.content %></div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>No posts available.</p>
+    <% } %>
+
+    <!-- Add your navigation or other elements here -->
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<%- include('partials/footer'); %>
