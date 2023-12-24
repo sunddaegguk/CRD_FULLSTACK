@@ -10,21 +10,21 @@
     <div class="container pt-3">
       <div class="row">
         <% posts.forEach((post) => { %>
-  <% const formattedCreatedAt = moment(new Date()).format("DD/MM/YYYY HH:mm:ss"); %>
-          <div class="col-sm-12 col-md-3 p-2 border mb-2">
-            <a href="/posts/<%= post._id %>">
-              <img src="<%= post.image %>" alt="<%= post.title %> Image" class="img-fluid" width="100%">
-            </a>
-          </div>
-          <div class="col-9 p-2 border">
-            <h2>
-              <a href="/posts/<%= post._id %>"><%= post.title %></a>
-            </h2>
-            <p class="lead" style="justify-content: center"><%= stripHtml(post.description.substring(0, 300)).result %></p>
-            <a href="/posts/<%= post._id %>">
-              <button class="btn btn-dark text-white rounded-0 btn-sm">Read more...</button>
-            </a>
-          </div>
+        <% const formattedCreatedAt = moment(new Date()).format("DD/MM/YYYY HH:mm:ss"); %>
+        <div class="col-sm-12 col-md-3 p-2 border mb-2">
+          <a href="/posts/<%= post._id %>">
+            <img src="<%= post.image %>" alt="<%= post.title %> Image" class="img-fluid" width="100%">
+          </a>
+        </div>
+        <div class="col-9 p-2 border">
+          <h2>
+            <a href="/posts/<%= post._id %>"><%= post.title %></a>
+          </h2>
+          <p class="lead" style="justify-content: center"><%= stripHtml(post.description.substring(0, 300)).result %></p>
+          <a href="/posts/<%= post._id %>">
+            <button class="btn btn-dark text-white rounded-0 btn-sm">Read more...</button>
+          </a>
+        </div>
         <% }) %>
       </div>
     </div>

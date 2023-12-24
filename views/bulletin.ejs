@@ -1,63 +1,79 @@
-<%- include('partials/header'); %>
-<!-- views/bulletin-board.ejs -->
+<%- include('./partials/header') %>
 
-<!DOCTYPE html>
-<html lang="en">
+<div class="container pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <% if (post) { %>
+        <img src="<%= post.image %>" alt="" class="img-fluid" width="100%">
+        <h1 class="display-4"><%= post.title %></h1>
+        <% } else { %>
+        <p>Post not found</p>
+        <% } %>
+      </div>
+    </div>
+    <p class="p-2">
+      Author: <span style="letter-spacing: 6px;"><%= post.user ? post.user.username : 'Anonymous' %></span>
+      <span>Created: <%= post.createdAt.toDateString() %></span>
+      <span>Updated: <%= post.updatedAt.toDateString() %></span>
+    </p>
+    <div class="row">
+      <div class="col-12">
+        <% if (post) { %>
+        <!-- Display tags in a paragraph -->
+        <p><strong>Tags:</strong> <%= post.tag %></p>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulletin Board</title>
-    <!-- Add your stylesheets or styles here -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+        <!-- Edit post button -->
+        <a href="/posts/<%= post._id %>/edit" class="btn btn-info">Edit Post</a>
 
-        .post {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
+        <!-- Delete post button -->
+        <form method="POST" action="/blogs/<%= post._id %>?_method=delete" class="d-inline">
+          <button class="btn btn-danger">Delete Post</button>
+        </form>
+        <% } else { %>
+        <p>Post not found</p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
 
-        .post-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+<!-- comments SECTION-->
+<!-- comments SECTION-->
+<div class="container pt-5">
+  <div class="container">
+    <form action="/blogs/<%= post._id %>/comments" method="POST">
+      <!-- Comment Input -->
+      <div class="form-group pt-2">
+        <label for="comment">Leave a comment:</label>
+        <textarea id="comment" class="form-control rounded-0" rows="4" name="comment"></textarea>
+      </div>
+      <!-- Add Comment Button -->
+      <div class="form-group pt-2">
+        <button type="submit" class="btn btn-primary w-100 rounded-0">Add Comment</button>
+      </div>
+    </form>
+  </div>
+</div>
 
-        .post-content {
-            font-size: 16px;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>Bulletin Board</h1>
-
-    <% if (posts.length > 0) { %>
-        <% posts.forEach((post) => { %>
-            <div class="post">
-                <div class="post-title"><%= post.title %></div>
-                <div class="post-content"><%= post.content %></div>
-            </div>
-        <% }); %>
-    <% } else { %>
-        <p>No posts available.</p>
-    <% } %>
-
-    <!-- Add your navigation or other elements here -->
-
-</body>
-
-</html>
-
-
-
-
-
-
+<!-- Display Comments Section -->
+<!-- Display Comments Section -->
+<div class="container pt-5">
+  <div class="container">
+    <div class="row">
+      <% if (post.comments && post.comments.length > 0) { %>
+      <% post.comments.forEach((comment) => { %>
+      <div class="col-12">
+        <h5 class="card-title"><strong><%= comment.author %></strong></h5>
+        <p class="card-text"><%= comment.comment %></p>
+      </div>
+      <% }) %>
+      <% } else { %>
+      <p>No comments yet.</p>
+      <% } %>
+    </div>
+  </div>
+</div>
 
 
 

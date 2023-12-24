@@ -1,38 +1,38 @@
 <%- include('./partials/header') %>
 
 <div class="container">
-<div class="container pt-5">
-  <div class="bg-light p-5">
-    <h1 class="text-center">New Post</h1>
-    <div class="pt-5">
-<form class="row g-3" action="/blogs/<%= post._id %>/?_method=PUT" method="POST">
-  <input type="hidden" name="_method" value="PUT">
-        <!-- Other form fields -->
-        <div class="col-md-6">
-          <label for="title" class="form-label">Post Title</label>
-             <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>" required>
-        </div>
-       <div class="col-md-6">
-  <label for="tag" class="form-label">Post Tag</label>
-  <input type="text" name="tag" class="form-control" id="tag" value="<%= post.tag %>" required>
-</div>
-        <div class="col-12">
-          <label for="image-url" class="form-label">Image URL</label>
-          <input type="text" name="image" class="form-control" id="image-url" value="<%=post.image  %>">
-        </div>
+  <div class="container pt-5">
+    <div class="bg-light p-5">
+      <h1 class="text-center">New Post</h1>
+      <div class="pt-5">
+        <form class="row g-3" action="/blogs/<%= post._id %>/?_method=PUT" method="POST">
+          <input type="hidden" name="_method" value="PUT">
+          <!-- Other form fields -->
+          <div class="col-md-6">
+            <label for="title" class="form-label">Post Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>" required>
+          </div>
+          <div class="col-md-6">
+            <label for="tag" class="form-label">Post Tag</label>
+            <input type="text" name="tag" class="form-control" id="tag" value="<%= post.tag %>" required>
+          </div>
+          <div class="col-12">
+            <label for="image-url" class="form-label">Image URL</label>
+            <input type="text" name="image" class="form-control" id="image-url" value="<%=post.image  %>">
+          </div>
 
-        <div class="col-12">
-          <label for="description" class="form-label">Post Description</label>
-         <textarea type="text" name="description" class="form-control" id="description"><%= post.description %></textarea>
-        </div>
+          <div class="col-12">
+            <label for="description" class="form-label">Post Description</label>
+            <textarea type="text" name="description" class="form-control" id="description"><%= post.description %></textarea>
+          </div>
 
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary w-100 bg-dark">Submit</button>
-        </div>
-      </form>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary w-100 bg-dark">Submit</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <%- include('partials/footer')  %>
